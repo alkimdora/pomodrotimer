@@ -1,0 +1,33 @@
+
+
+const timeDisplay = document.getElementById('time');
+const pomodoroButton = document.getElementById('pomodoro');
+const shortBreakButton = document.getElementById('shortBreak');
+const longBreakButton = document.getElementById('longBreak');
+
+let time = 25 * 60;
+let timer;
+
+function updateDisplay() {
+  const minutes = Math.floor(time / 60).toString().padStart(2, '0');
+  const seconds = (time % 60).toString().padStart(2, '0');
+  timeDisplay.textContent = `${minutes}:${seconds}`;
+}
+
+function startTimer(duration) {
+  clearInterval(timer);
+  time = duration * 60;
+  timer = setInterval(() => {
+    time--;
+    if (time < 0) {
+      clearInterval(timer);
+      time = 0;
+    }
+    updateDisplay();
+  }, 1000);
+}
+
+pomodoroButton.addEventListener('click', () => startTimer(25));
+shortBreakButton.addEventListener('click', () => startTimer(5));
+longBreakButton.addEventListener('click', () => startTimer(10));
+updateDisplay();
