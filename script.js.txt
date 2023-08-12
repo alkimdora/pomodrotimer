@@ -1,11 +1,9 @@
-
-
 const timeDisplay = document.getElementById('time');
 const pomodoroButton = document.getElementById('pomodoro');
 const shortBreakButton = document.getElementById('shortBreak');
 const longBreakButton = document.getElementById('longBreak');
 
-let time = 25 * 60;
+let time = 25 * 60; // Default time is 25 minutes
 let timer;
 
 function updateDisplay() {
@@ -17,13 +15,16 @@ function updateDisplay() {
 function startTimer(duration) {
   clearInterval(timer);
   time = duration * 60;
+  updateDisplay();
   timer = setInterval(() => {
     time--;
     if (time < 0) {
       clearInterval(timer);
       time = 0;
+      updateDisplay();
+    } else {
+      updateDisplay();
     }
-    updateDisplay();
   }, 1000);
 }
 
