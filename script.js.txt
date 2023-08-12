@@ -17,31 +17,25 @@ function startTimer(duration) {
   if (isActive) {
     clearInterval(timer);
     isActive = false;
-    updateDisplay();
+    pomodoroButton.textContent = 'Start';
     pomodoroButton.classList.remove('active');
-    shortBreakButton.classList.remove('active');
-    longBreakButton.classList.remove('active');
   } else {
     clearInterval(timer);
     time = duration * 60;
     updateDisplay();
     isActive = true;
+    pomodoroButton.textContent = 'Pause';
     pomodoroButton.classList.add('active');
-    shortBreakButton.classList.add('active');
-    longBreakButton.classList.add('active');
     timer = setInterval(() => {
       time--;
       if (time < 0) {
         clearInterval(timer);
         time = 0;
         isActive = false;
-        updateDisplay();
+        pomodoroButton.textContent = 'Start';
         pomodoroButton.classList.remove('active');
-        shortBreakButton.classList.remove('active');
-        longBreakButton.classList.remove('active');
-      } else {
-        updateDisplay();
       }
+      updateDisplay();
     }, 1000);
   }
 }
