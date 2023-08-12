@@ -29,8 +29,7 @@ body {
   margin: 0.5rem;
 }
 
-.button.active {
+.active {
   background-color: black;
   color: white;
 }
-
